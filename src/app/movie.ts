@@ -10,9 +10,9 @@ enum Genre{
 
 export interface Movie {
     id: number;
+    runtime: number;
     title: string;
     description: string;
     gnere: Genre;
-    runtime: number;
     releaseDate: Date;
 }
