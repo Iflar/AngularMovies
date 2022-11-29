@@ -1,11 +1,11 @@
-enum Genre{
-    Action = 1,
-    Thriller,
-    Drama,
-    Mystery,
-    Horror,
-    Comedy,
-    Romance
+export enum Genre{
+    "Action" = 1,
+    "Thriller",
+    "Drama",
+    "Mystery",
+    "Horror",
+    "Comedy",
+    "Romance"
 }
 
 export interface Movie {
