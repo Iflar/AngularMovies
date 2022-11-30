@@ -6,7 +6,7 @@ import { Movie, Genre } from './movie';
 @Injectable({
   providedIn: 'root'
 })
-export class InMemoryDataService implements InMemoryDataService{
+export class InMemoryDataService implements InMemoryDbService{
 
   createDb() {
     const movies = [

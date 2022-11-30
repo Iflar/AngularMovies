@@ -15,7 +15,7 @@ export class MoviesComponent implements OnInit {
   constructor(private movieService: MovieService){}
 
   ngOnInit(): void {
-    
+    console.log('movies logged');
   }
 
   getMovies(){
