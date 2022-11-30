@@ -3,6 +3,7 @@
 <ul class="movies">
     <li *ngFor="let movie of movies">
         <p>{{movie.title}}, {{movie.genre}}, {{movie.releaseDate | date}}, {{movie.runtime}}hrs</p>
+        <a routerLink="/detail/{{movie.id}}">details</a>
     </li>
 </ul>
 

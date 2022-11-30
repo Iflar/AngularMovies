@@ -27,5 +27,12 @@ export class MovieService {
     .pipe(catchError(this.handleError<Movie[]>('getMovies', [])))
   }
 
+  getMovie(id: number): Observable<Movie>{
+    const url = `${this.moviesUrl}/${id}`;
+    return this.http.get<Movie>(url).pipe(
+      catchError(this.handleError<Movie>(`getMovie: id=${id}`))
+    );
+  }
+
   constructor(private http: HttpClient) { }
 }
