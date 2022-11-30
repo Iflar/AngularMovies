@@ -9,12 +9,14 @@ import { AppComponent } from './app.component';
 import { InMemoryDataService } from './in-memory-data.service';
 import { MoviesComponent } from './movies/movies.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { MovieSearchComponent } from './movie-search/movie-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MoviesComponent,
-    MovieDetailComponent
+    MovieDetailComponent,
+    MovieSearchComponent
   ],
   imports: [
     BrowserModule,

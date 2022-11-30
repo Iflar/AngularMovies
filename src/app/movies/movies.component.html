@@ -1,5 +1,7 @@
 <p>Movies:</p>
 
+<app-movie-search></app-movie-search>
+
 <ul class="movies">
     <li *ngFor="let movie of movies">
         <p>{{movie.title}}, {{movie.genre}}, {{movie.releaseDate | date}}, {{movie.runtime}}hrs</p>

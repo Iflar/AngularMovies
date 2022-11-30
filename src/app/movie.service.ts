@@ -34,5 +34,15 @@ export class MovieService {
     );
   }
 
+  searchMovies(term: string): Observable<Movie[]>{
+    if(!term.trim()){
+      return of([]);
+    }
+    return this.http.get<Movie[]>(`${this.moviesUrl}/?title=${term}`).pipe(
+      catchError(this.handleError<Movie[]>('searchMovies', []))
+    )
+  }
+
+  
   constructor(private http: HttpClient) { }
 }
