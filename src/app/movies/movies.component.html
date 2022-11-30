@@ -1,1 +1,9 @@
-<p>movies works!</p>
+<p>Movies:</p>
+
+<ul class="movies">
+    <li *ngFor="let movie of movies">
+        <p>{{movie.title}}, {{movie.genre}}, {{movie.releaseDate | date}}, {{movie.runtime}}hrs</p>
+    </li>
+</ul>
+
+

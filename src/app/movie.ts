@@ -1,11 +1,11 @@
 export enum Genre{
-    "Action" = 1,
-    "Thriller",
-    "Drama",
-    "Mystery",
-    "Horror",
-    "Comedy",
-    "Romance"
+    Action = 'Action',
+    Thriller = 'Thriller',
+    Drama = 'Drama',
+    Mystery = 'Mystery', 
+    Horror = 'Horror',
+    Comedy = 'Comedy',
+    Romance = 'Romance'
 }
 
 export interface Movie {
@@ -13,6 +13,6 @@ export interface Movie {
     runtime: number;
     title: string;
     description: string;
-    gnere: Genre;
+    genre: Genre;
     releaseDate: Date;
 }

@@ -11,10 +11,12 @@ import { MovieService } from '../movie.service';
 export class MoviesComponent implements OnInit {
 
   movies: Movie[] = [];
+  dataSource = this.movies;
 
   constructor(private movieService: MovieService){}
 
   ngOnInit(): void {
+    this.getMovies();
     console.log('movies logged');
   }
 
