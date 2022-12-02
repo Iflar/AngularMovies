@@ -10,6 +10,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { MoviesComponent } from './movies/movies.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { MovieSearchComponent } from './movie-search/movie-search.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MovieSearchComponent } from './movie-search/movie-search.component';
     AppRoutingModule,
     HttpClientModule,
 
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false } )
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false } ),
+     BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
