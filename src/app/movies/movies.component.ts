@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table'
 
 import { Movie } from '../movie';
 import { MovieService } from '../movie.service';
@@ -11,7 +12,6 @@ import { MovieService } from '../movie.service';
 export class MoviesComponent implements OnInit {
 
   movies: Movie[] = [];
-  dataSource = this.movies;
 
   constructor(private movieService: MovieService){}
 
@@ -24,4 +24,9 @@ export class MoviesComponent implements OnInit {
     this.movieService.getMovies()
     .subscribe(movies => this.movies = movies)
   }
+
+  displayedColumns: string[] = ['title', 'description', 'runtime', 'releaseDate'];
+  dataSource = new MatTableDataSource<Movie>();
+  
+
 }
