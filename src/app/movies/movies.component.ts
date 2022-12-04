@@ -22,7 +22,7 @@ export class MoviesComponent implements OnInit {
   constructor(private movieService: MovieService){}
 
   ngOnInit(): void {
-    // this.getMovies();
+    this.getMovies();
     console.log('movies logged');
   }
 
