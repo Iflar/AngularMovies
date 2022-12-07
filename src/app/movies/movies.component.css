@@ -6,3 +6,10 @@ table {
     color: black;
   }
   
+  .mat-column-title, .mat-column-runtime{
+    background-color: rgb(238, 237, 237);
+  }
+
+  .mat-column-description, .mat-column-releaseDate{
+    background-color: rgb(228, 227, 227);
+  }

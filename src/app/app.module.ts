@@ -13,13 +13,15 @@ import { MoviesComponent } from './movies/movies.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { MovieSearchComponent } from './movie-search/movie-search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LinkPanelComponent } from './link-panel/link-panel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MoviesComponent,
     MovieDetailComponent,
-    MovieSearchComponent
+    MovieSearchComponent,
+    LinkPanelComponent
   ],
   imports: [
     BrowserModule,
