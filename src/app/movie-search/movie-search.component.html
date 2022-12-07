@@ -1,9 +1,5 @@
 <div class="search-component">
     <input #searchBox id="search-box" (input)="search(searchBox.value)" placeholder="Search" />
 
-    <ul class="search-result">
-        <li *ngFor="let movie of movies$ | async" >
-            <a routerLink="/detail/{{movie.id}}">{{movie.title}}</a>
-        </li>
-    </ul>
-</div>
+
+<!-- <button class="button" (click)="sendMessage()">test!</button> -->

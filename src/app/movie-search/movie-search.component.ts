@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
@@ -12,6 +12,22 @@ import { MovieService } from '../movie.service'
   styleUrls: ['./movie-search.component.css']
 })
 export class MovieSearchComponent implements OnInit{
+
+  message: string = ' '
+
+  @Output() messageEvent = new EventEmitter<string>();
+  @Output() searchEvent = new EventEmitter<Observable<Movie[]>>();
+
+  sendMessage() {
+    this.message = 'This is a test!';
+    this.messageEvent.emit(this.message);
+    console.log(`message sent: "${this.message}"`);
+  }
+
+  sendSearchResults() {
+    this.searchEvent.emit(this.movies$);
+    console.log(`Search results sent!`);
+  }
 
   movies$!: Observable<Movie[]>;
  
@@ -29,6 +45,8 @@ export class MovieSearchComponent implements OnInit{
     distinctUntilChanged(),
     switchMap((term: string) => this.movieService.searchMovies(term)),
    );
+   this.sendSearchResults();
+   console.log(`message sent: component initialized `);
  }
   
 }
