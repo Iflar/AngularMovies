@@ -1,6 +1,6 @@
 <app-movie-search (searchEvent)="receiveSearchResults($event)" ></app-movie-search>
 
-<div *ngIf="(movies$ | async)?.length == 0">
+<div *ngIf="(movies$ | async)?.length == null || (movies$ | async)?.length == 0">
   <table mat-table [dataSource]="movies">
 
     <ng-container id="col-1" matColumnDef="title">
@@ -57,7 +57,7 @@
   
   </table>
 </div>
-{{(movies$ | async)?.length}}
+
 
 
 
