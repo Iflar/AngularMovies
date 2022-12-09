@@ -1,13 +1,9 @@
 import { Component, OnInit, } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table'
-import { Observable, Subject } from 'rxjs';
+import { concat, Observable, of, Subject, switchMap, distinctUntilChanged, debounceTime} from 'rxjs';
 
 import { Genre, Movie } from '../movie';
 import { MovieService } from '../movie.service';
-
-const movieData: Movie[] = [
-  {id: 1, runtime: 3, description: 'example', genre: Genre.Action, title: 'example title', releaseDate: new Date()}
-]
 
 
 
@@ -18,38 +14,35 @@ const movieData: Movie[] = [
 })
 export class MoviesComponent implements OnInit {
 
-  message = 'will it work?'
+  searchTerm: string = '';
 
-  movies$!: Observable<Movie[]>;
-
-  // receiveMessage($event: string){
-  //   this.message = $event
-  //   console.log('message received')
-  // }
-
-  receiveSearchResults($event: Observable<Movie[]>){
-    this.movies$ = $event
-    console.log('results received')
+  receiveTerm($event: string) {
+    this.searchTerm = $event;
   }
 
-  movies: Movie[] = movieData;
+  movies$: Observable<Movie[]> = this.movieService.getMovies();
+
+  searchMovies$!: Observable<Movie[]>;
+
+  // movieTableData$: Observable<Movie[]> = concat(this.movies$, this.searchMovies$);
+
   displayedColumns: string[] = ['title', 'description', 'runtime', 'releaseDate'];
   
 
   constructor(private movieService: MovieService){}
 
   ngOnInit(): void {
-    this.getMovies();
-    console.log('movies logged');
+    this.searchForMovies();
   }
 
+  private searchTerms = new Subject<string>();
 
-  getMovies(){
-    this.movieService.getMovies()
-    .subscribe(movies => this.movies = movies)
+  searchForMovies(){
+    console.log('search method ran')
+    this.searchMovies$ = this.searchTerms.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((term: string) => this.movieService.searchMovies(term)),
+     );
   }
-
-  
-  
-
 }

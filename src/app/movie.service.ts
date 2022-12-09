@@ -34,10 +34,12 @@ export class MovieService {
     );
   }
 
+  
   searchMovies(term: string): Observable<Movie[]>{
     if(!term.trim()){
       return of([]);
     }
+    console.log(`movies searched`)
     return this.http.get<Movie[]>(`${this.moviesUrl}/?title=${term}`).pipe(
       catchError(this.handleError<Movie[]>('searchMovies', []))
     )

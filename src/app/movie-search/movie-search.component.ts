@@ -11,42 +11,26 @@ import { MovieService } from '../movie.service'
   templateUrl: './movie-search.component.html',
   styleUrls: ['./movie-search.component.css']
 })
-export class MovieSearchComponent implements OnInit{
+export class MovieSearchComponent {
 
-  message: string = ' '
+  @Output() searchEvent = new EventEmitter<string>();
 
-  @Output() messageEvent = new EventEmitter<string>();
-  @Output() searchEvent = new EventEmitter<Observable<Movie[]>>();
+  private searchTerm = new Subject<string>();
 
-  sendMessage() {
-    this.message = 'This is a test!';
-    this.messageEvent.emit(this.message);
-    console.log(`message sent: "${this.message}"`);
+  input: string = '';
+
+  assignInput(userInput: string){
+    this.input = userInput;
   }
 
-  sendSearchResults() {
-    this.searchEvent.emit(this.movies$);
-    console.log(`Search results sent!`);
+  sendTerm() {
+    this.searchEvent.emit(this.input);
+    console.log(`Term sent: ${this.input}`);
   }
-
-  movies$!: Observable<Movie[]>;
  
   constructor(private movieService: MovieService){}
 
-  private searchTerms = new Subject<string>();
-
   search(term: string): void{
-    this.searchTerms.next(term);
+    this.searchTerm.next(term);
   }
-
-  ngOnInit(): void {
-   this.movies$ = this.searchTerms.pipe(
-    debounceTime(300),
-    distinctUntilChanged(),
-    switchMap((term: string) => this.movieService.searchMovies(term)),
-   );
-   this.sendSearchResults();
-   console.log(`message sent: component initialized `);
- }
-  
 }
